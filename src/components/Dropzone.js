@@ -39,7 +39,7 @@ const Dropzone = () => {
       {(formProps) => (
         <Form>
           <Field name="file">
-            {({ meta }) => (
+            {({ field, meta }) => (
               <ReactDropzone
                 onDrop={(acceptedFiles) => {
                   formProps.setFieldValue("file", acceptedFiles[0]);
@@ -49,7 +49,8 @@ const Dropzone = () => {
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
                     <p>
-                      Drag 'n' drop some files here, or click to select files
+                      {field.value.name ||
+                        "Drag 'n' drop some files here, or click to select files"}
                     </p>
                     {meta.touched && meta.error && (
                       <div className="error">{meta.error}</div>
